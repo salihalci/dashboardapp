@@ -18,8 +18,10 @@ export async function fetchRevenue() {
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
-
+    console.log('Fetching revenue data...');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     // console.log('Data fetch completed after 3 seconds.');
+    console.log("revenues fetched");
 
     return data.rows;
   } catch (error) {
@@ -41,7 +43,9 @@ export async function fetchLatestInvoices() {
       ...invoice,
       amount: formatCurrency(invoice.amount),
     }));
+    console.log("Invoices fetched!");
     return latestInvoices;
+
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch the latest invoices.');
@@ -71,6 +75,7 @@ export async function fetchCardData() {
     const totalPaidInvoices = formatCurrency(data[2].rows[0].paid ?? '0');
     const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? '0');
 
+    console.log("Counts fetched.")
     return {
       numberOfCustomers,
       numberOfInvoices,

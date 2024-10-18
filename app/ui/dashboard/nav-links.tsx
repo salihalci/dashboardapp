@@ -16,7 +16,7 @@ import clsx from 'clsx';
 const links = [
     {
         name: 'Home',
-        href: '/dashboard',
+        href: '/dashboard/overview',
         icon: HomeIcon
     },
     {
